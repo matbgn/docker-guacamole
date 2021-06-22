@@ -11,7 +11,7 @@ matrix:
     - os: linux
       arch: amd64
       env:
-        - DOCKERFILE="Dockerfile"
+        - DOCKERFILE="Dockerfile.orig"
         - TAG_SUFFIX="latest"
         - ALT_SUFFIX="amd64"
 
@@ -19,7 +19,7 @@ matrix:
     - os: linux
       arch: arm64
       env:
-        - DOCKERFILE="Dockerfile.raspberry-pi"
+        - DOCKERFILE="Dockerfile.orig.raspberry-pi"
         - TAG_SUFFIX="arm32v5"
         - ALT_SUFFIX="armhf"
 
