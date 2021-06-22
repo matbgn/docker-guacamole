@@ -20,13 +20,21 @@ RUN curl -SLO "https://github.com/just-containers/s6-overlay/releases/download/v
 
 WORKDIR ${GUACAMOLE_HOME}
 
-# Install dependencies
+# Install dependencies as requested here http://guacamole.apache.org/doc/
+# => For guacamole-server server itself
+# => For guacenc utilities:
+#     => FFmpeg
+#     => FreeRDP & Pango
+#     => Libs for SSH, Telnet & VNC + SSL Support
+#     => libwebsockets is required for Kubernetes support. If you do not wish to build Kubernetes support, this library is not needed.
+#     => PulseAudio, Ogg Vorbis & WebbP Support
 RUN apt-get update && apt-get install -y \
-    libcairo2-dev libjpeg62-turbo-dev libpng-dev \
-    libossp-uuid-dev libavcodec-dev libavutil-dev \
-    libswscale-dev freerdp2-dev libfreerdp-client2-2 libpango1.0-dev \
-    libssh2-1-dev libtelnet-dev libvncserver-dev \
-    libpulse-dev libssl-dev libvorbis-dev libwebp-dev libwebsockets-dev \
+    libcairo2-dev libjpeg62-turbo-dev libpng-dev libtool-bin libossp-uuid-dev \
+    libavcodec-dev libavformat-dev libavutil-dev libswscale-dev \
+    freerdp2-dev libfreerdp-client2-2 libpango1.0-dev \
+    libssh2-1-dev libtelnet-dev libvncserver-dev libssl-dev\
+    libwebsockets-dev \
+    libpulse-dev libvorbis-dev libwebp-dev \
     ghostscript postgresql-${PG_MAJOR} \
   && rm -rf /var/lib/apt/lists/*
 
